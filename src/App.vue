@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <component :is="layout">
+      <router-view/>
+    </component>
   </div>
 </template>
 
@@ -13,3 +11,21 @@
 @import 'assets/index.css';
 
 </style>
+
+<script>
+import AuthLayout from '@/layouts/AuthLayout'
+import AppLayout from '@/layouts/AppLayout'
+
+export default {
+  name: 'App',
+  components: {
+    AuthLayout, AppLayout
+  },
+  computed: {
+    layout() {
+      console.log(this.$route)
+      return (this.$route.meta.layout || 'auth') + '-layout'
+    }
+  }
+}
+</script>
