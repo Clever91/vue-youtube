@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="layout">
-      <router-view/>
+      <router-view />
     </component>
   </div>
 </template>
@@ -14,16 +14,16 @@
 
 <script>
 import AuthLayout from '@/layouts/AuthLayout'
-import AppLayout from '@/layouts/AppLayout'
+import AdminLayout from '@/layouts/AdminLayout'
 
 export default {
   name: 'App',
   components: {
-    AuthLayout, AppLayout
+    AuthLayout, AdminLayout
   },
   computed: {
     layout() {
-      console.log(this.$route)
+      console.log(this.$route.meta)
       return (this.$route.meta.layout || 'auth') + '-layout'
     }
   }

@@ -12,8 +12,8 @@ const routes = [
   {
     path: '/admin/categories',
     name: 'Categories',
-    meta: { layout: 'app' },
-    component: () => import('@/views/app/Categories')
+    meta: { layout: 'admin' },
+    component: () => import('@/views/admin/Categories')
   },
   {
     path: '/auth/login',
