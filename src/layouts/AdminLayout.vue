@@ -1,11 +1,11 @@
 <template>
   <div class="app-main-layout">
     <!-- navbar component -->
-    <Navbar />
+    <Navbar @click="sidebarOpen = !sidebarOpen" />
     <!-- sidebar compoenent -->
-    <Sidebar />
+    <Sidebar v-model="sidebarOpen" />
     <!-- main content -->
-    <main class="app-content">
+    <main class="app-content" :class="{full: !sidebarOpen}">
       <div class="app-page">
         <router-view />
       </div>
@@ -26,6 +26,9 @@ import Sidebar from '@/components/admin/Sidebar'
 
 export default {
   name: 'Admin-Layout',
+  data: () => ({
+    sidebarOpen: true
+  }),
   components: {
     Navbar, Sidebar
   }

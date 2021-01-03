@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <div class="navbar-left">
         <a href="#">
-          <i class="material-icons black-text">dehaze</i>
+          <i class="material-icons black-text" @click.prevent="$emit('click')">dehaze</i>
         </a>
         <span class="black-text">12.12.12</span>
       </div>
