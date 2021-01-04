@@ -2,7 +2,7 @@ export default function(value, format = "date") {
     const options = {}
     if (format.includes('date')) {
         options.year = 'numeric'
-        options.month = 'long'
+        options.month = 'short'
         options.day = '2-digit'
     }
     if (format.includes('time')) {
