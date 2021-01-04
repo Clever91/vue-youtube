@@ -63,12 +63,20 @@ export default {
     password: { required, minLength: minLength(3) }
   },
   methods: {
-    signIn() {
+    async signIn() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      this.$router.push('/admin')
+      try {
+        await this.$store.dispatch('login', {
+          email: this.email,
+          password: this.password
+        })
+        this.$router.push('/admin')
+      } catch (e) {
+        //
+      }
     },
     invalidEmail() {
       return (this.$v.email.$dirty && !this.$v.email.required) 
