@@ -51,8 +51,8 @@
       </div>
       <p>
         <label>
-          <input type="checkbox" />
-          <span>С правилами согласен</span>
+          <input type="checkbox" v-model="agree" />
+          <span :class="{'helper-text invalid': invalidAgree($v.agree)}">С правилами согласен</span>
         </label>
       </p>
     </div>
@@ -84,12 +84,13 @@ export default {
     email: '',
     password: '',
     name: '',
-    check: false
+    agree: false
   }),
   validations: {
     email: { required, email },
     password: { required, minLength: minLength(3) },
     name: { required, minLength: minLength(6) },
+    agree: { checked: v => v },
   },
   methods: {
     signUp () {
@@ -107,6 +108,9 @@ export default {
     },
     invalidMinLength(field) {
       return field.$dirty && !field.minLength
+    },
+    invalidAgree(field) {
+      return field.$dirty && !field.checked
     }
   }
 }
