@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit.prevent="singIn">
+  <form class="card auth-card" @submit.prevent="signIn">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
@@ -52,6 +52,7 @@
 import {email, required, minLength} from 'vuelidate/lib/validators'
 
 export default {
+  name: "Login",
   data: () => ({
     email: '',
     password: ''
@@ -61,7 +62,7 @@ export default {
     password: { required, minLength: minLength(3) }
   },
   methods: {
-    singIn() {
+    signIn() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
