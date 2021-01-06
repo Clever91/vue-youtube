@@ -53,7 +53,8 @@ export default {
     }, 1000);
   },
   methods: {
-    logout() {
+    async logout() {
+      this.$store.dispatch('logout')
       this.$router.push('/auth/login?m=logout')
     }
   },

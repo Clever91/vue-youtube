@@ -93,12 +93,19 @@ export default {
     agree: { checked: v => v },
   },
   methods: {
-    signUp () {
+    async signUp () {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
-      this.$router.push('/auth/login')
+      try {
+        await this.$store.dispatch('register', {
+          email: this.email,
+          password: this.password,
+          name: this.name
+        })
+        this.$router.push('/auth/login')
+      } catch (e) {}
     },
     invalidEmail(field) {
       return field.$dirty && !field.email
