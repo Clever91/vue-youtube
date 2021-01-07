@@ -1,5 +1,4 @@
 import firebase from 'firebase/app'
-import { register } from 'register-service-worker'
 
 export default {
     actions: {
@@ -7,10 +6,11 @@ export default {
             try {
                 await firebase.auth().signInWithEmailAndPassword(email, password)
             } catch (e) {
+                commit('setError', e)
                 throw e
             }
         },
-        async register({dispatch}, {email, password, name}) {
+        async register({dispatch, commit}, {email, password, name}) {
             try {
                 await firebase.auth().createUserWithEmailAndPassword(email, password)
                 const uid = firebase.auth().currentUser.uid;
@@ -19,13 +19,14 @@ export default {
                     name: name
                 }, (error) => {
                     if (error) {
-                      console.log(error)
+                        commit('setError', error)
+                        throw error
                     } else {
                       // Data saved successfully!
                     }
                 });
             } catch (e) {
-                console.log(e)
+                commit('setError', e)
                 throw e
             }
         },
@@ -33,7 +34,8 @@ export default {
             try {
                 await firebase.auth().signOut();
             } catch (e) {
-                //
+                commit('setError', e)
+                throw e
             }
         }
     }

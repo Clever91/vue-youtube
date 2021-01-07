@@ -104,7 +104,7 @@ export default {
           password: this.password,
           name: this.name
         })
-        this.$router.push('/auth/login')
+        this.$router.push('/auth/login?m=register')
       } catch (e) {}
     },
     invalidEmail(field) {

@@ -74,9 +74,7 @@ export default {
           password: this.password
         })
         this.$router.push('/admin')
-      } catch (e) {
-        //
-      }
+      } catch (e) {}
     },
     invalidEmail() {
       return (this.$v.email.$dirty && !this.$v.email.required) 
